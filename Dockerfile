@@ -70,6 +70,9 @@ RUN addgroup -g 1000 node \
   fi \
   && rm -f "node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz" \
   && apk del .build-deps \
+  # Remove unused headers for openssl \
+  # https://github.com/nodejs/node/issues/46451
+  && find /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 -type d ! -name "linux-$alpineArch" -print0 | xargs -0 rm -r \
   && corepack enable \
   # smoke tests
   && node --version \
