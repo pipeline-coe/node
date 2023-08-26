@@ -47,7 +47,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
-            type=raw,value=18.16.0-alpine
+            type=raw,value=18.17.1-alpine
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
